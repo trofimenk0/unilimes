@@ -5,12 +5,42 @@ body {
     position: relative;
 }
 
+button {
+    background-color: #1e88e5;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    width: 120px;
+}
+
 #formCreateMesh {
     background-color: #fff;
+    border-radius: 0 0 20px 0;
     left: 0;
     padding: 20px;
     position: absolute;
     top: 0;
+}
+
+#objectsList {
+    background-color: #fff;
+    border-radius: 0 20px 0 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    max-height: 300px;
+    overflow: auto;
+    position: absolute;
+}
+
+#objectsList div {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 10px 20px;
 }
 
 #scene {
