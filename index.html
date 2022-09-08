@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three JS</title>
 </head>
+
 <body>
+    <form id="formCreateMesh">
+        <select name="geometry" id="formCreateMesh__geometry">
+            <option value="cube">Cube</option>
+            <option value="sphere">Sphere</option>
+            <option value="pyramid">Pyramid</option>
+        </select>
+
+        <input type="number" name="scale" id="formCreateMesh__scale">
+
+        <input type="submit" value="Create">
+    </form>
+
     <canvas id="scene"></canvas>
 </body>
+
 </html>
