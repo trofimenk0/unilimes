@@ -22,21 +22,25 @@ function main() {
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.x = 0;
     camera.position.y = 0;
-    camera.position.z = 20;
+    camera.position.z = 50;
 
-    const controls = new OrbitControls( camera, renderer.domElement );
+    // controls
+    const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 0.05;
 
     controls.screenSpacePanning = false;
 
-    controls.minDistance = 40;
-    controls.maxDistance = 80;
+    controls.minDistance = 10;
+    controls.maxDistance = 60;
 
     controls.maxPolarAngle = Math.PI / 2;
 
-    const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-    scene.add( light );
+    // light
+    const ambientLight = new THREE.AmbientLight(0x404040, 3); // soft white light
+    scene.add(ambientLight);
+
+    addLights(3);
 
     // canvas display size
     function resizeRendererToDisplaySize(renderer) {
@@ -60,7 +64,7 @@ function main() {
             camera.updateProjectionMatrix();
         }
 
-        controls.update(); 
+        controls.update();
 
         renderer.render(scene, camera);
 
@@ -69,6 +73,21 @@ function main() {
     requestAnimationFrame(render);
 }
 main();
+
+function addLights(number) {
+
+    for (let i = 0; i < number; i++) {
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.x = generatePosition();
+        pointLight.position.y = generatePosition();
+        pointLight.position.z = generatePosition();
+        scene.add(pointLight);
+
+        const sphereSize = 1;
+        const pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
+        scene.add(pointLightHelper);
+    }
+}
 
 // Form handler
 const formCreateMesh = document.getElementById('formCreateMesh');
@@ -94,7 +113,8 @@ formCreateMesh.addEventListener('submit', function (event) {
 });
 
 function generatePosition() {
-    return Math.floor(Math.random() * 10);
+    let rand = -20 + Math.random() * (20 + 1 + 10);
+    return Math.floor(rand);
 }
 
 function appendToScheneObjects(uuid) {
@@ -103,7 +123,7 @@ function appendToScheneObjects(uuid) {
 
 function createCube(scale) {
     const geometry = new THREE.BoxGeometry(scale, scale, scale);
-    const material = new THREE.MeshBasicMaterial({ color: 0x1a237e });
+    const material = new THREE.MeshStandardMaterial({ color: 0x1a237e });
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
     appendToScheneObjects(cube.uuid);
@@ -118,7 +138,7 @@ function createCube(scale) {
 
 function createPyramid(scale) {
     const geometry = new THREE.CylinderGeometry(0, scale, scale, 4, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0xc2185b });
+    const material = new THREE.MeshStandardMaterial({ color: 0xc2185b });
     const cone = new THREE.Mesh(geometry, material);
     scene.add(cone);
     appendToScheneObjects(cone.uuid);
@@ -133,7 +153,7 @@ function createPyramid(scale) {
 
 function createSphere(scale) {
     const geometry = new THREE.SphereGeometry(scale, 32, 32);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff6f00 });
+    const material = new THREE.MeshStandardMaterial({ color: 0xff6f00 });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
     appendToScheneObjects(sphere.uuid);
