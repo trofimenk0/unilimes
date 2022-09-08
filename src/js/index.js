@@ -1,5 +1,7 @@
 import css from "../css/style.css";
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
 
 // scene
 const scene = new THREE.Scene();
@@ -21,6 +23,17 @@ function main() {
     camera.position.x = 0;
     camera.position.y = 0;
     camera.position.z = 20;
+
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+    controls.dampingFactor = 0.05;
+
+    controls.screenSpacePanning = false;
+
+    controls.minDistance = 40;
+    controls.maxDistance = 80;
+
+    controls.maxPolarAngle = Math.PI / 2;
 
     const light = new THREE.AmbientLight( 0x404040 ); // soft white light
     scene.add( light );
@@ -46,6 +59,8 @@ function main() {
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
             camera.updateProjectionMatrix();
         }
+
+        controls.update(); 
 
         renderer.render(scene, camera);
 
