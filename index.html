@@ -10,13 +10,13 @@
 
 <body>
     <form id="formCreateMesh">
-        <select name="geometry" id="formCreateMesh__geometry" required>
+        <select name="geometry" id="formCreateMesh__geometry" class="formSelect" required>
             <option value="cube" selected>Cube</option>
             <option value="sphere">Sphere</option>
             <option value="pyramid">Pyramid</option>
         </select>
 
-        <input type="number" name="scale" id="formCreateMesh__scale" required>
+        <input type="number" name="scale" id="formCreateMesh__scale" class="formInput" placeholder="Scale..." required>
 
         <input type="submit" value="Create">
     </form>

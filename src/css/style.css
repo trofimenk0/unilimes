@@ -1,26 +1,48 @@
 html,
 body {
+    font-size: 16px;
     height: 100%;
     margin: 0;
     position: relative;
 }
 
-button {
+button, input[type='submit'] {
     background-color: #1e88e5;
     border: none;
+    border-radius: 6px;
     color: #fff;
     cursor: pointer;
-    height: 40px;
+    height: 36px;
     width: 120px;
 }
 
 #formCreateMesh {
+    align-items: center;
     background-color: #fff;
     border-radius: 0 0 20px 0;
+    display: flex;
+    gap: 20px;
     left: 0;
     padding: 20px;
     position: absolute;
     top: 0;
+}
+
+.formSelect {
+    border: none;
+    border-bottom: 2px solid #1e88e5;
+    height: 36px;
+    padding: 0 10px;
+    width: 140px;
+}
+
+.formInput {
+    border: none;
+    border-bottom: 2px solid #1e88e5;
+    height: 36px;
+    outline: none;
+    padding: 0 10px;
+    width: 140px;
 }
 
 #objectsList {
@@ -32,7 +54,9 @@ button {
     left: 0;
     max-height: 300px;
     overflow: auto;
+    padding: 10px 0;
     position: absolute;
+    width: 500px;
 }
 
 #objectsList div {
@@ -41,10 +65,4 @@ button {
     gap: 20px;
     justify-content: space-between;
     padding: 10px 20px;
-}
-
-#scene {
-    width: 100%;
-    height: 100%;
-    display: block;
 }
